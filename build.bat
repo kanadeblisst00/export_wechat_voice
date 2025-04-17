@@ -1,0 +1,1 @@
+"C:/Program Files/Python310/python.exe" -m nuitka --onefile --output-dir=Release --onefile-tempdir-spec="{CACHE_DIR}/{COMPANY}/{PRODUCT}/{VERSION}" --company-name=Pygrower --product-name=pyvoice --product-version=1.0.0.1 --windows-console-mode=disable --include-data-files=pysilk/pysilk.dll=pysilk/pysilk.dll --enable-plugin=pyside6 --windows-icon-from-ico=main.ico main.py
