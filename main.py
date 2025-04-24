@@ -23,13 +23,13 @@ class ExportVoiceThread(QThread):
     def run(self):
         self.log_signal.emit(f"开始导出微信号({self.src_wechat_id})的语音消息")
         msg_db = SQLiteDB(self.db_path, "MSG")
-        query = 'SELECT count(*) FROM MSG WHERE StrTalker = ? AND Type = 34;'
+        query = 'SELECT count(*) FROM MSG WHERE StrTalker = ? AND Type = 34 AND IsSender = 0;'
         data_count = msg_db.select_count(query, (self.src_wechat_id,))
         if data_count == 0:
             self.log_signal.emit(f"没有找到微信号({self.src_wechat_id})的语音消息")
             return
         self.log_signal.emit(f"找到语音消息{data_count}条")
-        query = 'SELECT MsgSvrID FROM MSG WHERE StrTalker = ? AND Type = 34;'
+        query = 'SELECT MsgSvrID FROM MSG WHERE StrTalker = ? AND Type = 34 AND IsSender = 0;'
         voice_db = SQLiteDB(self.db_path, "MediaMSG")
         export_path = os.path.join(self.export_path, self.src_wechat_id)
         if not os.path.exists(export_path):
